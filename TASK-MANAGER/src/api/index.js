@@ -1,0 +1,20 @@
+import axios from "axios";
+const API = axios.create({
+  baseURL: "http://localhost:8000/api/v1/",
+});
+
+API.interceptors.request.use((req) => {
+  if (localStorage.getItem("taskProfile")) {
+    req.headers.Authorization = `Bearer ${
+      JSON.parse(localStorage.getItem("taskProfile")).token
+    }`;
+  }
+  return req;
+});
+
+// USERS
+export const fetchUser = () => API.get("/user");
+export const fetchUserById = (id) => API.get(`/user/${id}`);
+export const signUp = (newUser) => API.post("/user/signUp/", newUser);
+export const signIn = (newUser) => API.post("/user/signIn/", newUser);
+
