@@ -1,6 +1,6 @@
 import axios from "axios";
 const API = axios.create({
-  baseURL: "http://localhost:8000/api/v1/",
+  baseURL: "https://uzerqureshi-devtown-assignment-serv.vercel.app/api/v1/",
 });
 
 API.interceptors.request.use((req) => {
